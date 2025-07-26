@@ -5,12 +5,13 @@ The whole premise of turnstiles, and any phased array is going to be addition of
 
 ## Phase
 In order to benefit from receiving the same signal from multiple sources, the signals need to be combined. If two signals are perfectly in phase with one another, they are additive. If the two signals are 180° from one another, they cancel each other out. 
+
 ![Alt text](./images/mixing.jpg "Combining two signals")
 
 If the signals are phased apart anywhere in-between, distortion is created. This makes the signal more difficult to read, lose amplitude, and become "muddy". When it comes to antennas, this kind of offset also affects the radiation pattern of the antenna, making an elipses polarization.
 
 ### Phase related to polarization
-In a 3D space, circular polarization could be represented like a helix. If we flatten this down to two dimensions, and use time as the third, it's possible to illustrate a circularly polarized signal might be received by a simple cross dipole without phasing 
+In a 3D space, circular polarization could be represented like a helix. If we flatten this down to two dimensions, and use time as the third, it's possible to illustrate how a circularly polarized signal might be received by a simple cross dipole without phasing 
 
 ![Alt text](./images/circular_polarization.gif "Circular Polarization")
 
@@ -25,7 +26,9 @@ Most coaxial cables should have a listed Velocity factor, or Velocity Propogatio
 
 ![Alt text](./images/VF.jpg "Velocity Factor")
 
-here we have two coaxial cables. assuming the same exact signal going through them and same lenght, the cable with a higher propogation factor will get the signal through it faster, and the number of 360° phase changes (one wavelength) that occur in the time it takes to travel across the length will be fewer. If we can precisely measure out a length of coax, we can delay signals so that when they converge, they are in sync. ![Alt text](./images/phased_circular_polarization.gif "Circular Polarization in Phase")
+here we have two coaxial cables. assuming the same exact signal going through them and same lenght, the cable with a higher propogation factor will get the signal through it faster, and the number of 360° phase changes (one wavelength) that occur in the time it takes to travel across the length will be fewer. If we can precisely measure out a length of coax, we can delay signals so that when they converge, they are in sync. 
+
+![Alt text](./images/phased_circular_polarization.gif "Circular Polarization in Phase")
 
 We can see the difference between the phased and [non-phased](https://github.com/ModderMax/Turnstile?tab=readme-ov-file#phase-related-to-polarization) here, as when the signal would be delayed by the appropriate amount, the signals reach the receiver at the same time, thus adding to the amplitude.
 
