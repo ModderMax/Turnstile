@@ -37,5 +37,7 @@ We can see the difference between the phased and [non-phased](https://github.com
 # Circularly Polarized Turnstiles
 Circular polarization can be achieved with special design of the elements (eg. QFH and Asymmetric turnstiles) or by using delays, such as phase lines.
 ## Axial Turnsile & Crossed yagi-uda
+The classic axial-mode turnstile, using a pair of dipoles at a 90° offset. The polarization can be switched between LHCP and RHCP by changing which dipole is delayed by 90 degrees of phase. Just like dipoles can have directors and a reflector added, so can turnstiles.
 ## Asymmetric Turnstile
+An asymmetric turnstile does not utilize phase lines, and uses angled elements instead to acheive the polarization effect.
 ## Quad-Feed Turnstile
