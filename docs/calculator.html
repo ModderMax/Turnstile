@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Phase Line Calculator</title>
+<title>Coax Phase Line Calculator</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
     padding: 20px;
   }
   .calc-container {
-    max-width: 400px;
+    max-width: 420px;
     margin: auto;
     background: #fff;
     padding: 20px;
@@ -27,7 +27,7 @@
     display: block;
     margin: 12px 0 4px;
   }
-  input {
+  input, select {
     width: 100%;
     padding: 6px;
     font-size: 1rem;
@@ -63,8 +63,14 @@
 <div class="calc-container">
   <h2>Coax Phase Line Calculator</h2>
 
-  <label for="freq">Frequency (MHz):</label>
+  <label for="freq">Frequency:</label>
   <input id="freq" type="number" step="0.001" placeholder="e.g. 137">
+  <select id="freqUnit">
+    <option value="1e6" selected>MHz</option>
+    <option value="1e3">kHz</option>
+    <option value="1">Hz</option>
+    <option value="1e9">GHz</option>
+  </select>
 
   <label for="vf">Velocity Factor (0–1):</label>
   <input id="vf" type="number" step="0.01" placeholder="e.g. 0.82">
@@ -72,36 +78,52 @@
   <label for="phase">Phase Shift (degrees):</label>
   <input id="phase" type="number" step="0.1" placeholder="e.g. 90">
 
+  <label for="connector">Connector Type (optional):</label>
+  <select id="connector">
+    <option value="0" selected>None</option>
+    <option value="0.025">SMA-M (25 mm @ 100% VF)</option>
+    <option value="0.015">MCX-M (15 mm @ 100% VF)</option>
+  </select>
+
   <button onclick="calc()">Calculate</button>
 
   <div id="result" class="result" style="display:none;"></div>
 </div>
 
 <script>
+function formatLength(meters) {
+  if (meters >= 1) return meters.toFixed(3) + " m";
+  if (meters >= 0.01) return (meters * 100).toFixed(2) + " cm";
+  return (meters * 1000).toFixed(1) + " mm";
+}
+
 function calc() {
-  const freqMHz = parseFloat(document.getElementById('freq').value);
+  const freq = parseFloat(document.getElementById('freq').value);
+  const freqUnit = parseFloat(document.getElementById('freqUnit').value);
   const vf = parseFloat(document.getElementById('vf').value);
   const phase = parseFloat(document.getElementById('phase').value);
+  const connectorLength = parseFloat(document.getElementById('connector').value);
 
-  if (isNaN(freqMHz) || isNaN(vf) || isNaN(phase) || freqMHz <= 0 || vf <= 0 || vf > 1) {
+  if (isNaN(freq) || isNaN(vf) || isNaN(phase) || freq <= 0 || vf <= 0 || vf > 1) {
     alert("Please enter valid values.");
     return;
   }
 
   const c = 299792458; // speed of light in m/s
-  const freqHz = freqMHz * 1e6;
+  const freqHz = freq * freqUnit;
   const lambdaFree = c / freqHz; // free-space wavelength in meters
   const length = (lambdaFree * vf * phase) / 360;
-  const cLength = length - 0.026;
-
   const fullLength = lambdaFree * vf; // 360° length in coax
+  const lengthWithConnector = length - connectorLength;
 
   document.getElementById('result').style.display = 'block';
   document.getElementById('result').innerHTML = `
-    Required coax length for ${phase}° shift: <strong>${length.toFixed(4)} m</strong><br>
-    Appx. Length including connectors: <strong>${cLength.toFixed(4)} m</strong><br>
-    Full 360° wavelength in coax: <strong>${fullLength.toFixed(3)} m</strong><br>
-    Full 360° wavelength in free space <strong>${lambdaFree.toFixed(3)} m</strong>
+    Required coax length for ${phase}° shift: <strong>${formatLength(length)}</strong><br>
+    ${connectorLength > 0 ? 
+      `Approx. length including connector: <strong>${formatLength(lengthWithConnector)}</strong><br>` : ''
+    }
+    Full 360° wavelength in coax: <strong>${formatLength(fullLength)}</strong><br>
+    Full 360° wavelength in free space: <strong>${formatLength(lambdaFree)}</strong>
   `;
 }
 </script>
