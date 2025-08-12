@@ -63,7 +63,7 @@ Example:
 - Coax with **60% VF** → ~1° error per cm
 - Coax with **80% VF** → ~0.75° error per cm
 
-Here is a [Coax Phase Length Calculator](./docs/calculator.html) to find the length of coax for a given frequency and phase. 
+Here is a [Coax Phase Length Calculator](https://moddermax.github.io/Turnstile/calculator.html) to find the length of coax for a given frequency and phase. 
 
 ⚠ The example above is not all-inclusive. It was calculated at 50mhz; wavelength decreases as frequency increases.
 ⚠ The calculator does not include the phase of added connectors. From my experience, a pair of male SMAs add ~25mm @ 100% VF, or about 2.5° per connector at 137mhz.
