@@ -61,7 +61,7 @@
 <body>
 
 <div class="calc-container">
-  <h2>Coax Phase Length Calculator</h2>
+  <h2>Coax Phase Line Calculator</h2>
 
   <label for="freq">Frequency (MHz):</label>
   <input id="freq" type="number" step="0.001" placeholder="e.g. 137">
@@ -92,13 +92,16 @@ function calc() {
   const freqHz = freqMHz * 1e6;
   const lambdaFree = c / freqHz; // free-space wavelength in meters
   const length = (lambdaFree * vf * phase) / 360;
+  const cLength = length - 0.026;
 
   const fullLength = lambdaFree * vf; // 360° length in coax
 
   document.getElementById('result').style.display = 'block';
   document.getElementById('result').innerHTML = `
-    Required coax length for ${phase}° shift: <strong>${length.toFixed(3)} m</strong><br>
-    Full 360° wavelength in coax: <strong>${fullLength.toFixed(3)} m</strong>
+    Required coax length for ${phase}° shift: <strong>${length.toFixed(4)} m</strong><br>
+    Appx. Length including connectors: <strong>${cLength.toFixed(4)} m</strong><br>
+    Full 360° wavelength in coax: <strong>${fullLength.toFixed(3)} m</strong><br>
+    Full 360° wavelength in free space <strong>${lambdaFree.toFixed(3)} m</strong>
   `;
 }
 </script>
