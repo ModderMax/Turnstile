@@ -37,15 +37,13 @@ We can use coax cables to create a delay in signal, since electromagnetic waves 
 
 ![Phase measurement](./images/sampling.jpg "Phase measurement")
 
-Most coaxial cables list a **Velocity Factor** (VF) or **Velocity of Propagation** (Vp) — the fraction of the speed of light in a vacuum at which a signal travels in the cable. Most coax falls between **60%** and **85%**.
+Most coaxial cables list a **Velocity Factor** (VF) or **Velocity of Propagation** (Vp) - the fraction of the speed of light in a vacuum at which a signal travels in the cable. Most coax falls between **60%** and **85%**.
 
 ![Velocity Factor](./images/VF.jpg "Velocity Factor")
 
 When creating phase lines, VF becomes vital:  
 - Two coaxial cables of equal length but different VF will deliver the signal at different times.
 - One full **360° phase change** equals one wavelength, but in coax the wavelength is reduced by VF:  
-
-⚠ **Check:** The explanation here could mention frequency dependence — at higher frequencies, the same length produces a greater phase shift.
 
 If we precisely measure coax length, we can delay signals so that, when they converge, they are in sync.
 
